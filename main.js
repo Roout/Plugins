@@ -6,13 +6,13 @@
 // @version         1.0
 // @run-at          document-end
 // @require         http://code.jquery.com/jquery-2.1.3.min.js
-// @include         /^https?://steamcommunity.com/market/
+// @include         /^http://steamcommunity.com/market/
 // @grant           none
 // @noframes
 // ==/UserScript==
 
-
-(function __main(){
+jQuery.noConflict();
+(function __main($,undefined){
     // initialization
     $("#my_market_activelistings_number").after("<span id='__global_price'></span>");
 
@@ -36,8 +36,9 @@
     };
     function loop(){
         $("#__global_price").text(calc());
-        setInterval(loop,5*60*1000);
+        setTimeOut(loop,5*60*1000);
     };
     //calls
     loop();
-})();
+})(jQuery);
+
